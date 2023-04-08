@@ -1,24 +1,30 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter'
+function addHoverEffect(tile: Element | null) {
+  tile?.addEventListener("mouseover", () => {
+    tile.classList.add("active")
+  })
+}
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+function createTile(container: Element | null ) {
+  const tile = document.createElement("div");
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  tile.classList.add("tile")
+
+  addHoverEffect(tile)
+
+  container!.appendChild(tile)
+}
+
+function createGrid(gridSize: number) {
+  const container: any = document.querySelector(".container");
+  container!.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
+  container!.style.gridTemplateRows = `repeate(${gridSize}, 1fr)`
+
+
+  for(let i = 0; i<gridSize; i += 1) {
+    for(let j = 0; j<gridSize; j += 1 ) {
+      createTile(container)
+    }
+  }
+}
+
+createGrid(16)
