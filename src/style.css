@@ -8,8 +8,11 @@ body {
     height: 100vh;
 }
 
-.container {
+.grid-container {
     display: grid;
+    margin-left: 50px;
+    min-height: 500px;
+    min-width: 500px;
 }
 
 .tile {
@@ -19,4 +22,17 @@ body {
 
 .active {
     background-color: black;
+}
+
+.etch-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.site-name {
+    text-align: center;
+    padding: 15px;
+    background-color: grey;
+    margin: 0 0 15px;
 }

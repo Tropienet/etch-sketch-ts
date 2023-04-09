@@ -15,7 +15,7 @@ function createTile(container: Element | null ) {
 }
 
 function createGrid(gridSize: number) {
-  const container: any = document.querySelector(".container");
+  const container: any = document.querySelector(".grid-container");
   container!.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
   container!.style.gridTemplateRows = `repeate(${gridSize}, 1fr)`
 
