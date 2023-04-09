@@ -27,4 +27,38 @@ function createGrid(gridSize: number) {
   }
 }
 
+function deleteGrid() {
+  const tiles: any = document.querySelectorAll(".tile")
+
+  for(let i = 0; i < tiles.length; i += 1) {
+    tiles[i].remove()
+  }
+}
+
+const buttonForClearingGrid = document.querySelector(".clear-grid-btn")
+
+buttonForClearingGrid?.addEventListener("click", () => {
+  deleteGrid();
+
+
+  createGrid(16);
+})
+
 createGrid(16)
+
+function createChangeGridSizeButton() {
+  const gridSizeButton = document.querySelector(".change-size-btn")
+
+  gridSizeButton?.addEventListener("click", () => {
+    let gridSize: number = Number(prompt("Enter the size of the grid"))
+  
+    while(gridSize<16||gridSize>100) {
+      gridSize = Number(prompt("Enter the size of the grid(min 16, max 100)"))
+    }
+    
+    deleteGrid()
+    createGrid(gridSize)
+  })
+}
+
+createChangeGridSizeButton()
