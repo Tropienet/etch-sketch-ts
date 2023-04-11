@@ -1,6 +1,8 @@
-function addHoverEffect(tile: Element | null) {
+let color = "black"
+
+function addHoverEffect(tile:  any, color: string) {
   tile?.addEventListener("mouseover", () => {
-    tile.classList.add("active")
+    tile.style.backgroundColor = color
   })
 }
 
@@ -9,9 +11,25 @@ function createTile(container: Element | null ) {
 
   tile.classList.add("tile")
 
-  addHoverEffect(tile)
+  color = "black";
+
+  addHoverEffect(tile, color)
 
   container!.appendChild(tile)
+}
+
+function createRGBHover () {
+  function getRandomInt(max: number) {
+    return Math.floor(Math.random()* max)
+  }
+
+
+  const tiles = document.querySelectorAll(".tile")
+
+  for(let i = 0; i < tiles.length; i+= 1) {
+    color = `rgb(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(255)})`;
+    addHoverEffect(tiles[i], color)
+  }
 }
 
 function createGrid(gridSize: number) {
@@ -55,10 +73,16 @@ function createChangeGridSizeButton() {
     while(gridSize<16||gridSize>100) {
       gridSize = Number(prompt("Enter the size of the grid(min 16, max 100)"))
     }
-    
+
     deleteGrid()
     createGrid(gridSize)
   })
 }
 
 createChangeGridSizeButton()
+
+const rgbButton = document.querySelector(".rgb-btn")
+
+rgbButton?.addEventListener("click", () => {
+  createRGBHover();
+})
